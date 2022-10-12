@@ -1,0 +1,20 @@
+sentenca5 = ''
+arraySentencas5 = []
+
+
+url5 = "https://www.sas.com/en_us/insights/analytics/what-is-natural-language-processing-nlp.html"
+
+
+dadosPagina5 = requests.get(url5)
+html5 = BeautifulSoup(dadosPagina5.text, 'html.parser')
+
+#Se desejar printar o código html da url apenas descomentar a linha a seguir, eu achei desnecessário
+#print(soup)
+
+for sentenca5 in html5.find_all("p"):
+    arraySentencas5.append(sentenca5.get_text())
+    print(sentenca5.get_text())
+    
+
+# Print do Array
+print('\n', 'Lista de sentenças: ', arraySentencas5)
