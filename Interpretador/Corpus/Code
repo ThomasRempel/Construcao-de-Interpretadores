@@ -1,23 +1,43 @@
-from bs4 import BeautifulSoup
+#Importando as Bibliotecas
+
 import requests
-
-sentenca1 = ''
-arraySentencas1 = []
-
-
-url1 = "https://www.tutorialspoint.com/artificial_intelligence/artificial_intelligence_natural_language_processing.htm"
+import spacy
+import bs4
+from bs4 import BeautifulSoup
 
 
-dadosPagina1 = requests.get(url1)
-html1 = BeautifulSoup(dadosPagina1.text, 'html.parser')
+#Código
+nlp = spacy.load("en_core_web_sm")
 
-#Se desejar printar o código html da url apenas descomentar a linha a seguir, eu achei desnecessário
-#print(soup)
 
-for sentenca1 in html1.find_all("p"):
-    arraySentencas1.append(sentenca1.get_text())
-    print(sentenca1.get_text())
-    
 
-# Print do Array
-print('\n', 'Lista de sentenças: ', arraySentencas1)
+  dados = requests.get(site)
+  if  not 200==dados.status_code:
+    return lista
+  soap = BeautifulSoup(dados.content, 'html.parser')
+
+
+  
+  for i in soap.find_all('p'):
+    espaco = nlp(i.get_text())
+    for j in espaco.sents:
+      lista.append(j)
+  return lista
+
+sentencas = []
+
+html1 = pega_site("https://www.tutorialspoint.com/artificial_intelligence/artificial_intelligence_natural_language_processing.htm", [])
+html2 = pega_site("https://hbr.org/2022/04/the-power-of-natural-language-processing", [])
+html3 = pega_site("https://www.activestate.com/blog/how-to-do-text-summarization-with-python/", [])
+html4 = pega_site("https://www.coursera.org/specializations/natural-language-processing", [])
+html5 = pega_site("https://www.sas.com/en_us/insights/analytics/what-is-natural-language-processing-nlp.html", [])
+
+
+sentencas.append(html1)
+sentencas.append(html2)
+sentencas.append(html3)
+sentencas.append(html4)
+sentencas.append(html5)
+
+
+print(sentencas)
