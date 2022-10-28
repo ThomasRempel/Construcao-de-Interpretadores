@@ -1,0 +1,39 @@
+bg = []
+vocabulario = []
+document = -1
+
+def adiciona_palavra (sentencas, bg, document,size,x,y):
+  palavra = sentencas[x][y]
+
+
+  if palavra.dep_ == "SPACE" or palavra.dep_ == "dep" or palavra.dep_ == "punct":
+      return bg
+  found = False
+  for contador in bg:
+    if contador[0].text == palavra.text:
+      found = True
+      contador[document] += 1
+
+  if found:
+    return bg
+  bg.append([palavra])
+  for contador in range(size):
+    bg[len(bg)-1].append(0)
+  bg[len(bg)-1][document] = 1
+  return bg
+
+
+for contador in sentencas:
+  for j in contador:
+    document += 1
+    vocabulario.append([])
+    for k in j:
+      vocabulario[document].append(k)
+
+
+for contador in range(len(vocabulario)):
+  for j in range(len(vocabulario[contador])):
+    bg = adiciona_palavra(vocabulario,bg,contador+1,len(vocabulario),contador,j)
+
+
+  print(bg[contador])
