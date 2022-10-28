@@ -5,32 +5,34 @@ import spacy
 import bs4
 from bs4 import BeautifulSoup
 
-
-#Código
 nlp = spacy.load("en_core_web_sm")
 
+#Código
 
 
+sentencas = []
+
+def pega_dados(site, lista):
+
+ 
   dados = requests.get(site)
   if  not 200==dados.status_code:
     return lista
   soap = BeautifulSoup(dados.content, 'html.parser')
 
-
   
   for i in soap.find_all('p'):
-    espaco = nlp(i.get_text())
-    for j in espaco.sents:
+    space = nlp(i.get_text())
+    for j in space.sents:
       lista.append(j)
   return lista
 
-sentencas = []
 
-html1 = pega_site("https://www.tutorialspoint.com/artificial_intelligence/artificial_intelligence_natural_language_processing.htm", [])
-html2 = pega_site("https://hbr.org/2022/04/the-power-of-natural-language-processing", [])
-html3 = pega_site("https://www.activestate.com/blog/how-to-do-text-summarization-with-python/", [])
-html4 = pega_site("https://www.coursera.org/specializations/natural-language-processing", [])
-html5 = pega_site("https://www.sas.com/en_us/insights/analytics/what-is-natural-language-processing-nlp.html", [])
+html1 = pega_dados("https://www.tutorialspoint.com/artificial_intelligence/artificial_intelligence_natural_language_processing.htm", [])
+html2 = pega_dados("https://hbr.org/2022/04/the-power-of-natural-language-processing", [])
+html3 = pega_dados("https://www.activestate.com/blog/how-to-do-text-summarization-with-python/", [])
+html4 = pega_dados("https://www.coursera.org/specializations/natural-language-processing", [])
+html5 = pega_dados("https://www.sas.com/en_us/insights/analytics/what-is-natural-language-processing-nlp.html", [])
 
 
 sentencas.append(html1)
