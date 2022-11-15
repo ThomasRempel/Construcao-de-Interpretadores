@@ -1,0 +1,7 @@
+Sua tarefa será gerar uma matriz de distância, computando o cosseno do ângulo entre todos os 
+vetores que encontramos usando o tf-idf. Para isso use a seguinte fórmula para o cálculo do cosseno 
+use  a  fórmula  apresentada  em  Word2Vector  (frankalcantara.com) 
+(https://frankalcantara.com/Aulas/Nlp/out/Aula4.html#/0/4/2) e apresentada na figura a seguir:
+
+O resultado  deste trabalho  será uma matriz que relaciona cada um dos vetores já calculados 
+com todos os outros vetores disponíveis na matriz termo-documento.
