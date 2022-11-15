@@ -1,0 +1,11 @@
+tamanho_matriz= len(tfIDF)
+tamanho_vetor = len(tfIDF[0])
+dist = np.ones((tamanho_matriz, tamanho_matriz))
+
+#Código
+for i in range(0, tamanho_matriz - 1):
+  for j in range(1, tamanho_matriz):
+    formula = np.dot(tfIDF[i],tfIDF[j])/(np.linalg.norm(tfIDF[i])*np.linalg.norm(tfIDF[j]))
+    dist[i][j] = formula
+    dist[j][i] = formula
+print(dist)
